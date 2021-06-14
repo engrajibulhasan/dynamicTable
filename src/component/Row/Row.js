@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from "react";
+import './Row.css';
 
 const Row = (props) => {
-  const { id, col1, col2, col3, col4, status } = props.info;
+  // Receiving Data from Table Component
+  const { id, col1, col2, col3, status } = props.info;
 
+  //Created State for state management
   const [userName, setUserName] = useState("");
   const [dependant, setDependant] = useState("");
+
+  //Checkbox Handling
+  const handleCheckbox = (payload) => {
+    if (payload) {
+      props.handleData({ id, col1, col2, col3, userName, dependant });
+    } else {
+      console.log(payload);
+    }
+  };
+
+  //User data Handling
   const handleUserName = (payload) => {
     setUserName(payload);
   };
 
+  //changing all child dependant value based on props.parentData
   useEffect(() => {
     setDependant(props.parentData);
   }, [props.parentData]);
 
+  // dependant data Handling
   const handleDependant = (payload) => {
     setDependant(payload);
   };
@@ -40,18 +56,34 @@ const Row = (props) => {
           value={dependant}
         />
       </td>
-      <td>
-        <button
+      <td className="actionTd">
+        <button className="actionBtn"
           onClick={() =>
             props.handleData({
               id,
+              col1,
+              col2,
+              col3,
               userName,
               dependant,
             })
           }
         >
-          Send
+          
+          {
+            status?'already Sent':'Send'
+          }
         </button>
+    
+
+        
+        <label className="checkbox-container">
+          <input type="checkbox" name="check"
+            id=""
+            onChange={(e) => handleCheckbox(e.target.checked)}/>
+          <span className="checkmark"></span>
+        </label>
+          
       </td>
     </tr>
   );

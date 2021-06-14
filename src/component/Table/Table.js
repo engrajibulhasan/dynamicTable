@@ -3,13 +3,13 @@ import Row from "../Row/Row";
 import "./Table.css";
 
 const Table = () => {
+  //Fake Data , this data will come through rest api 
   const fakeData = [
     {
       id: 1,
       col1: "Data 1",
       col2: "Data 2",
       col3: "Data 3",
-      col4: "",
       status: 0,
     },
     {
@@ -17,7 +17,6 @@ const Table = () => {
       col1: "Data 1",
       col2: "Data 2",
       col3: "Data 3",
-      col4: "",
       status: 0,
     },
 
@@ -26,19 +25,19 @@ const Table = () => {
       col1: "Data 1",
       col2: "Data 2",
       col3: "Data 3",
-      col4: "",
       status: 1,
     },
   ];
 
-  const handleData = ({ id, userName, dependant }) => {
-    console.log(id);
-    console.log(userName);
-    console.log(dependant);
+  //Data handling based on button click or checkbox
+  //This is the final output
+  const handleData = ({ id, col1, col2, col3, userName, dependant }) => {
+    console.log(id, col1, col2, col3, userName, dependant);
   };
 
+  //State management for parent data
   const [parentData, setParentData] = useState("");
-  console.log(parentData);
+  //console.log(parentData);
 
   return (
     <div>
